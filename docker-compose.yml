@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  # app service
+  item-app:
+    # use item-app:v1 image from github packages
+    image: ghcr.io/kamalmahmudi/item-app:v1
+    # use always restart policy
+    restart: always
+    # publish container's port 8080 to host's port 80
+    ports:
+      - 80:8080
+    # start app service after db service
+    depends_on:
+      - item-db
+  # db service
+  item-db:
+    # use mongo:3 image from dockerhub (default registry)
+    image: mongo:3
+    # use always restart policy
+    restart: always
+    # use registered volume to persist data
+    volumes:
+      - app-db:/data/db
+
+# register volume
+volumes:
+  app-db:

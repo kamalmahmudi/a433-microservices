@@ -1,2 +1,5 @@
+build_push_image.sh
+docker-compose.yml
+Dockerfile
 # Ignore node_modules directory
 src/node_modules
